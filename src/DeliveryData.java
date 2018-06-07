@@ -89,10 +89,10 @@ public class DeliveryData{
         String[] lineParts = line.split(",");
 
         String timestamp = lineParts[0];
-        String driverName = lineParts[1];
+        String driverName = lineParts[2];
 
         String numberOnly;
-        int partsCounter = 2;
+        int partsCounter = 3;
 
         try {
             for (int i = 0; i < packagesNumber; i++) {

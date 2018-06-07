@@ -8,7 +8,7 @@ public class Map {
 
     String path;
 
-    // Zmiena bierze linijki z pliku z mapą
+    // Zmienna bierze linijki z pliku z mapą
     String[] lines;
 
     public Map(String path) {

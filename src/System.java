@@ -8,7 +8,7 @@ public class System {
 
         // -------- Paths to files -------------
         String deliveryDataPath = "C:\\Users\\Witcherek7_Win10_Lap\\IdeaProjects\\SimplifiedDeliverySystem\\Generator.txt";
-        String mapPath = "C:\\Users\\Witcherek7_Win10_Lap\\IdeaProjects\\Packages Delivery System\\src\\map.txt";
+        String mapPath = "C:\\Users\\Witcherek7_Win10_Lap\\IdeaProjects\\SimplifiedDeliverySystem\\src\\map.txt";
         // -------------------------------------
 
         // --------- Implementacja -------------

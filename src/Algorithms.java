@@ -16,7 +16,7 @@ public class Algorithms {
         // Wypełniamy tablice czasem inf
         for(int i=0; i<distance.length; i++)
         {
-            distance[i] = 999;
+            distance[i] = 200;
         }
 
         distance[source-1] = 0;
@@ -93,7 +93,6 @@ public class Algorithms {
 
 
         }
-
 
 
 

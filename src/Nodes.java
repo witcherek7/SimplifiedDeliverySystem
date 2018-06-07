@@ -70,7 +70,7 @@ public class Nodes {
     {
         int whichhor = 0;
         int whichvert = 0;
-        for(int i = 0; i < N; i++)
+        for(int i = 0; i < N+N; i++)
         {
             if(i%2==0)
             {
@@ -101,10 +101,10 @@ public class Nodes {
                     int source = N*(whichvert)+j+1;
                     //System.out.println(source + " " + destination);
                     nodes[whichvert][j].addEdge(destination,value);
-                    //if(i!= N-1)
-                    //{
+                    if(i!= 2*N-1)
+                    {
                     nodes[whichvert+1][j].addEdge(source,value);
-                    //}
+                    }
                 }
                 whichvert++;
 
