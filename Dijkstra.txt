@@ -1,0 +1,14 @@
+------------Paczki dostarczone danego dnia---------------
+11-06-2018 zostało dostarczone 116 paczek.
+12-06-2018 zostało dostarczone 0 paczek.
+---------------Suma dostarczonych przesyłek----------------
+Oscar dostarczył 13 paczek.
+Jacob dostarczył 30 paczek.
+Jack dostarczył 19 paczek.
+Muhammad dostarczył 24 paczek.
+Harry dostarczył 16 paczek.
+Noah dostarczył 15 paczek.
+Charlie dostarczył 5 paczek.
+-------------Srednia długość trasy-----------
+Wynosi: 27
+Sredni czas wykonania algorytmu: 68ms.
