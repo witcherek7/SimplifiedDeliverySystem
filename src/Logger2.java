@@ -10,6 +10,7 @@ public class Logger2 {
     String path;
     String lines[];
     String separatedData[];
+    String save_path;
 
     static class Driver
     {
@@ -35,8 +36,9 @@ public class Logger2 {
 
 
 
-    public Logger2(String path) {
+    public Logger2(String path, String save_path) {
         this.path = path;
+        this.save_path = save_path;
     }
 
 
@@ -56,10 +58,11 @@ public class Logger2 {
 
     }
 
-    void setSeparatedDataAndSave(int medium_cost)
+    void setSeparatedDataAndSave(int medium_cost, long time)
     {
         LinkedList<Driver> listOfDrivers = new LinkedList<Driver>();
         LinkedList<Date> listOfDates = new LinkedList<Date>();
+
         for(int i=0; i<lines.length; i++) {
             separatedData = lines[i].split(":");
             String data = separatedData[0];
@@ -102,7 +105,7 @@ public class Logger2 {
             }
 
             try {
-                PrintWriter writer = new PrintWriter("Log2.txt");
+                PrintWriter writer = new PrintWriter(save_path);
 
                 writer.println("------------Paczki dostarczone danego dnia---------------");
                 for(Date x : listOfDates)
@@ -121,7 +124,7 @@ public class Logger2 {
 
                 writer.println("-------------Srednia długość trasy-----------");
                 writer.println("Wynosi: " + medium_cost);
-
+                writer.println("Sredni czas wykonania algorytmu: " + time + "ms.");
                 writer.close();
             }
             catch(IOException e)

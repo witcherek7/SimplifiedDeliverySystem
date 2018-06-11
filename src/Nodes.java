@@ -17,6 +17,7 @@ public class Nodes {
     static class Edge {
         int destination;
         int weight;
+        int source;
 
         public Edge(int destination, int weight)
         {

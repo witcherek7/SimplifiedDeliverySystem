@@ -201,33 +201,84 @@ public class Algorithms {
     return hops;
     }
 
-    int Bellman_Ford(int source, int destination, Nodes.Node[][] graph)
-    {
+    int Bellman_Ford(int source, int destination, Nodes.Node[][] graph) {
+        LinkedList<Nodes.Node> nodes = new LinkedList<Nodes.Node>();
+        LinkedList<Nodes.Edge> edges = new LinkedList<Nodes.Edge>();
+
+        int[] predecessor = new int[N * N];
+
+        // ----------------- NULL wartosci
+        for (int i = 0; i < predecessor.length; i++) {
+            predecessor[i] = 0;
+        }
 
 
+        // Dodanie node'ów
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                Nodes.Node node = graph[i][j];
+                nodes.add(node);
+                for (int k = 0; k < node.edges.size(); k++) {
+                    Nodes.Edge edge = node.edges.get(k);
+                    edge.source = node.nodeNumber;
+                    if (edge.destination <= N*N) {
+                        edges.add(node.edges.get(k));
+                    }
+                }
+            }
+        }
+        // ------------------------------------------
 
-        int distance[] = new int[N*N];
+
+        int distance[] = new int[N * N];
 
 
-        for(int i=0; i<distance.length; i++)
-        {
+        for (int i = 0; i < distance.length; i++) {
             distance[i] = 999;
         }
 
-        distance[source-1] = 0;
+        distance[source - 1] = 0;
 
-        for(int i=0; i<N-1; i++)
+        for (int i = 0; i < N - 1; i++) {
+            for (Nodes.Edge edge : edges) {
+                if (distance[edge.source - 1] + edge.weight < distance[edge.destination - 1]) {
+
+                    distance[edge.destination - 1] = distance[edge.source - 1] + edge.weight;
+                    predecessor[edge.destination-1] = edge.source;
+
+                }
+
+            }
+        }
+
+        int start = destination;
+        int stop = source;
+        int hops = 0;
+        while(stop != start)
         {
-
+            start = predecessor[start-1];
+            hops++;
         }
 
 
-        return distance[destination-1];
+        //out.println(distance[destination-1]);
+        //out.println(hops);
+        //return distance[destination-1];
+        return hops;
+
     }
 
+    int Bellman_Ford_starter(int[][] destinations, Nodes.Node[][] graph)
+    {
+        int cost = 0;
+        int source = 1;
 
-
-
-
-
+        for(int i=0; i<destinations.length; i++)
+        {
+            int destinationNodeNumber = graph[destinations[i][0]-1][destinations[i][1]-1].nodeNumber;
+            cost = cost + Bellman_Ford(source, destinationNodeNumber, graph);
+        }
+        return cost;
+    }
 }
+
