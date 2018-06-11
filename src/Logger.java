@@ -2,55 +2,59 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 
 public class Logger {
 
 
-        void createLog(String timestamp, String name, int packagesNumber, int pathTime) throws IOException {
-            try {
-
-               // Getting timestamp date
-
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
-
-                LocalDate date = LocalDate.parse(timestamp, formatter);
-
-                String newtimestamp = formatter.format(date);
-
-                // Changing date format
-
-                char D1letter = newtimestamp.charAt(0);
-                char D2letter = newtimestamp.charAt(1);
-                char M1letter = newtimestamp.charAt(2);
-                char M2letter = newtimestamp.charAt(3);
-                char Y1letter = newtimestamp.charAt(4);
-                char Y2letter = newtimestamp.charAt(5);
-                char Y3letter = newtimestamp.charAt(6);
-                char Y4letter = newtimestamp.charAt(7);
-
-                // Writing file
-
-                FileWriter writer = new FileWriter("Log.txt", true);
-
-                writer.write(D1letter+D2letter+"-"+M1letter+M2letter+"-"+Y1letter+Y2letter+Y3letter+Y4letter + ":"
-                +name+":"+packagesNumber+":"+pathTime);
-
-                writer.write("\r\n");
-
-                writer.close();
-
-                //System.out.print(D1letter+D2letter+"-"+M1letter+M2letter+"-"+Y1letter+Y2letter+Y3letter+Y4letter + ":"
-                //       +name+":"+packagesNumber+":"+pathTime);
-
-            } catch (IOException e) {
-                java.lang.System.out.print("Wrong Date Format!!");
-
-                e.printStackTrace();
-            }
+    void createLog(String timestamp, String name, int packagesNumber, int pathTime) throws IOException {
+        try {
 
 
+            // Getting timestamp date
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+
+            LocalDate date = LocalDate.parse(timestamp, formatter);
+
+            String newtimestamp = formatter.format(date);
+
+            // Changing date format
+
+            char D1letter = newtimestamp.charAt(0);
+            char D2letter = newtimestamp.charAt(1);
+            char M1letter = newtimestamp.charAt(2);
+            char M2letter = newtimestamp.charAt(3);
+            char Y1letter = newtimestamp.charAt(4);
+            char Y2letter = newtimestamp.charAt(5);
+            char Y3letter = newtimestamp.charAt(6);
+            char Y4letter = newtimestamp.charAt(7);
+
+            java.util.Map<String, Integer> nameAndCount = new HashMap<>();
+
+
+            // Writing file
+
+            FileWriter writer = new FileWriter("Log.txt", true);
+
+            writer.write(Character.toString(D1letter)+D2letter+"-"+M1letter+M2letter+"-"+Y1letter+Y2letter+Y3letter+Y4letter + ":"
+                    +name+":"+packagesNumber+":"+pathTime);
+
+            writer.write("\r\n");
+
+            writer.close();
+
+            //System.out.print(D1letter+D2letter+"-"+M1letter+M2letter+"-"+Y1letter+Y2letter+Y3letter+Y4letter + ":"
+            //       +name+":"+packagesNumber+":"+pathTime);
+
+        } catch (IOException e) {
+            java.lang.System.out.print("Wrong Date Format!!");
+
+            e.printStackTrace();
         }
 
+
+    }
         void CreateLog2(String timestamp, String[] NamesContainer, int howManyLines){
             try {
 

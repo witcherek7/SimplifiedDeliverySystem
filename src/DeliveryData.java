@@ -35,8 +35,8 @@ public class DeliveryData{
             PrintWriter writer = new PrintWriter(path);
 
             // ---------- tutaj zerujemy plik ----------
-            writer.print("");
-            writer.close();
+           writer.print("");
+           writer.close();
 
 
 
@@ -89,10 +89,10 @@ public class DeliveryData{
         String[] lineParts = line.split(",");
 
         String timestamp = lineParts[0];
-        String driverName = lineParts[2];
+        String driverName = lineParts[1];
 
         String numberOnly;
-        int partsCounter = 3;
+        int partsCounter = 2;
 
         try {
             for (int i = 0; i < packagesNumber; i++) {
