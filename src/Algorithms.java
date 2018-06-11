@@ -201,6 +201,30 @@ public class Algorithms {
     return hops;
     }
 
+    int Bellman_Ford(int source, int destination, Nodes.Node[][] graph)
+    {
+
+
+
+        int distance[] = new int[N*N];
+
+
+        for(int i=0; i<distance.length; i++)
+        {
+            distance[i] = 999;
+        }
+
+        distance[source-1] = 0;
+
+        for(int i=0; i<N-1; i++)
+        {
+
+        }
+
+
+        return distance[destination-1];
+    }
+
 
 
 
