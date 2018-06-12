@@ -87,41 +87,39 @@ public class DeliveryData{
         int[][] packages = new int[packagesNumber][2];
 
         String[] lineParts = line.split(",");
-
+        if(lineParts.length<=12 && lineParts.length>=4) {
         String timestamp = lineParts[0];
         String driverName = lineParts[1];
 
         String numberOnly;
         int partsCounter = 2;
 
-        try {
-            for (int i = 0; i < packagesNumber; i++) {
+            try {
+                for (int i = 0; i < packagesNumber; i++) {
 
-                numberOnly = lineParts[partsCounter];
-                numberOnly = numberOnly.replaceAll("[^0-9]", "");
-                packages[i][0] = Integer.parseInt(numberOnly);
-                //System.out.print(packages[i][0]);
-                partsCounter++;
-                numberOnly = lineParts[partsCounter];
-                numberOnly = numberOnly.replaceAll("[^0-9]", "");
-                packages[i][1] = Integer.parseInt(numberOnly);
-                //System.out.print(packages[i][1]);
-                partsCounter++;
+                    numberOnly = lineParts[partsCounter];
+                    numberOnly = numberOnly.replaceAll("[^0-9]", "");
+                    packages[i][0] = Integer.parseInt(numberOnly);
+                    //System.out.print(packages[i][0]);
+                    partsCounter++;
+                    numberOnly = lineParts[partsCounter];
+                    numberOnly = numberOnly.replaceAll("[^0-9]", "");
+                    packages[i][1] = Integer.parseInt(numberOnly);
+                    //System.out.print(packages[i][1]);
+                    partsCounter++;
 
 
+                }
+
+                // Tworzymy obiekt delivery i sprawdzamy czy dane sie zgadzaja, jak tak dodajem do kolejki
+                DeliveryEntry deliveryEntry = new DeliveryEntry(timestamp, driverName, packages, packagesNumber);
+                Boolean canIAdd = deliveryEntry.checkIfEntryIsCorrect();
+                if (canIAdd) {
+                    deliveries.add(deliveryEntry);
+                } else {
+                    out.println("Error in line: " + line);
+                }
             }
-
-            // Tworzymy obiekt delivery i sprawdzamy czy dane sie zgadzaja, jak tak dodajem do kolejki
-            DeliveryEntry deliveryEntry = new DeliveryEntry(timestamp, driverName, packages, packagesNumber);
-            Boolean canIAdd = deliveryEntry.checkIfEntryIsCorrect();
-            if(canIAdd) {
-                deliveries.add(deliveryEntry);
-            }
-            else
-            {
-                out.println("Error in line: " + line);
-            }
-        }
             catch(Exception error)
             {
                 // Tutaj wypisujemy linię która sprawiła kłopoty
@@ -129,6 +127,11 @@ public class DeliveryData{
                 out.println("Error in line = " + line);
             }
 
+        }
+          else
+        {
+            out.println("Incorrect entry " + line);
+        }
 
 
 

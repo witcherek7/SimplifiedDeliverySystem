@@ -12,6 +12,7 @@ public class System {
         String logPath = "Log.txt";
         String Dijkstra = "Dijkstra.txt";
         String Bellman = "Bellman.txt";
+        String Floyd = "Floyd.txt";
 
         // -------------------------------------
 
@@ -21,8 +22,9 @@ public class System {
         Algorithms algorithms = new Algorithms();
         Generator generator = new Generator();
         Logger logger = new Logger();
-        Logger2 logger2 = new Logger2(logPath, Dijkstra);
-        Logger2 logger21 = new Logger2(logPath, Bellman);
+        Logger2 logger_Dijkstra = new Logger2(logPath, Dijkstra);
+        Logger2 logger_Ford = new Logger2(logPath, Bellman);
+        Logger2 logger_Floyd = new Logger2(logPath, Floyd);
 
         // --------- Wywołanie metod -----------
         map.read();
@@ -34,12 +36,15 @@ public class System {
         boolean first_medium = true;
         int divider = 1;
         int medium_cost_Ford = 0;
+        int medium_cost_Floyd = 0;
 
         int divider_time = 0;
         long time;
         long time_Dijkstra = 0;
         long time_Bellman = 0;
+        long time_Floyd = 0;
 
+        long timestamp_reference = 0;
         // ---------------------- Operation core -----------------------
         while(true)
         {
@@ -53,43 +58,53 @@ public class System {
 
                     DeliveryEntry entry = fileloader.deliveries.pollFirst();
 
-                    time = java.lang.System.currentTimeMillis();
-                    int cost = algorithms.Dijstra_starter(entry.packages, nodes.nodes);
-                    time_Dijkstra = time_Dijkstra + java.lang.System.currentTimeMillis() - time;
-                    time = java.lang.System.currentTimeMillis();
-                    int cost2 = algorithms.Bellman_Ford_starter(entry.packages, nodes.nodes);
-                    time_Bellman = time_Bellman + java.lang.System.currentTimeMillis() - time;
-                    divider_time++;
+                    //Sprawdzanie czy timestamp wzrósł
+                    if(Long.parseLong(entry.timestamp)>timestamp_reference) {
+                        timestamp_reference = Long.parseLong(entry.timestamp);
+                        //Czas wykonywania algorytmu + obliczanie tras
+
+                        time = java.lang.System.currentTimeMillis();
+                        int cost = algorithms.Dijstra_starter(entry.packages, nodes.nodes);
+                        time_Dijkstra = time_Dijkstra + java.lang.System.currentTimeMillis() - time;
+                        time = java.lang.System.currentTimeMillis();
+                        int cost2 = algorithms.Bellman_Ford_starter(entry.packages, nodes.nodes);
+                        time_Bellman = time_Bellman + java.lang.System.currentTimeMillis() - time;
+                        time = java.lang.System.currentTimeMillis();
+                        int cost3 = algorithms.Floyd_Warshall_starter(entry.packages, nodes.nodes);
+                        time_Floyd = time_Floyd + java.lang.System.currentTimeMillis() - time;
 
 
+                        divider_time++;
 
 
-
-                    //int cost2 = algorithms.Floyd_Warshall(1,5,nodes.nodes);
-                    //out.println("Floyd " + cost2);
-                    // Tutaj miejsce na raportowanie!
-                    //out.println(entry.name + " dostarczył " + entry.packagesNumber + " paczek, w czasie " + cost);
+                        // Tutaj miejsce na raportowanie!
+                        //out.println(entry.name + " dostarczył " + entry.packagesNumber + " paczek, w czasie " + cost);
 
 
-                    //Logger przesyłek ciągły
-                    logger.createLog(entry.timestamp, entry.name, entry.packagesNumber, cost);
+                        //Logger przesyłek ciągły
+                        logger.createLog(entry.timestamp, entry.name, entry.packagesNumber, cost);
 
-                    // ------------------------ średnia długość trasy ---------------------------
-                    if(first_medium)
-                    {
-                        medium_cost = cost;
-                        medium_cost_Ford = cost2;
-                        first_medium = false;
+                        // ------------------------ średnia długość trasy ---------------------------
+                        if (first_medium) {
+                            medium_cost = cost;
+                            medium_cost_Ford = cost2;
+                            medium_cost_Floyd = cost3;
+                            first_medium = false;
+                        } else {
+                            divider++;
+                            medium_cost = (medium_cost + cost);
+                            medium_cost_Ford = medium_cost_Ford + cost2;
+                            medium_cost_Floyd = medium_cost_Floyd + cost3;
+                        }
+                        // -----------------------------------------------------------------------------
                     }
                     else
                     {
-                        divider++;
-                        medium_cost = (medium_cost+cost);
-                        medium_cost_Ford = medium_cost_Ford + cost2;
+                        //out.println("Nieprawidłowy timestamp: " + entry.timestamp + ", poprzedni: " + timestamp_reference);
                     }
-                    // -----------------------------------------------------------------------------
 
                 }
+
 
                 // Mierzenie czasu obliczeń algorytmu, POTRZEBNE DO RAPORTU
 
@@ -97,10 +112,13 @@ public class System {
 
 
                 //Logowanie raportu głównego
-                logger2.readFile();
-                logger2.setSeparatedDataAndSave(medium_cost/divider, time_Dijkstra/divider_time);
-                logger21.readFile();
-                logger21.setSeparatedDataAndSave(medium_cost_Ford/divider, time_Bellman/divider_time);
+                logger_Dijkstra.readFile();
+                logger_Dijkstra.setSeparatedDataAndSave(medium_cost/divider, time_Dijkstra/divider_time);
+                logger_Ford.readFile();
+                logger_Ford.setSeparatedDataAndSave(medium_cost_Ford/divider, time_Bellman/divider_time);
+                logger_Floyd.readFile();
+                logger_Floyd.setSeparatedDataAndSave(medium_cost_Floyd/divider, time_Floyd/divider_time);
+
 
 
 

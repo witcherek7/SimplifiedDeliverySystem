@@ -1,14 +1,20 @@
 ------------Paczki dostarczone danego dnia---------------
-11-06-2018 zostało dostarczone 116 paczek.
-12-06-2018 zostało dostarczone 0 paczek.
+20-05-1970  zostało dostarczone 4 paczek.
+25-11-2017  zostało dostarczone 26 paczek.
 ---------------Suma dostarczonych przesyłek----------------
-Oscar dostarczył 13 paczek.
-Jacob dostarczył 30 paczek.
-Jack dostarczył 19 paczek.
-Muhammad dostarczył 24 paczek.
-Harry dostarczył 16 paczek.
-Noah dostarczył 15 paczek.
-Charlie dostarczył 5 paczek.
+Charlie dostarczył 4 paczek.
+EPXBHMZTGKSS dostarczył 2 paczek.
+IPYNTDRSABPJ dostarczył 2 paczek.
+NBKXTAESGHQX dostarczył 3 paczek.
+LPDJAEJFTDNE dostarczył 1 paczek.
+AXVHJFLLNZGQ dostarczył 3 paczek.
+OMAXXAPXUIHU dostarczył 1 paczek.
+FTEEOTDPWSNP dostarczył 1 paczek.
+YQYRZZVBBTBE dostarczył 3 paczek.
+VWRIUXUGUQIH dostarczył 1 paczek.
+OGQFVHFCXFOL dostarczył 4 paczek.
+HVXXJXKIRUEE dostarczył 3 paczek.
+SFLLGSKUSLJR dostarczył 2 paczek.
 -------------Srednia długość trasy-----------
-Wynosi: 27
-Sredni czas wykonania algorytmu: 1ms.
+Wynosi: 23
+Sredni czas wykonania algorytmu: 0ms.

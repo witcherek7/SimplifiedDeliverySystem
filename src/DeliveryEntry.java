@@ -37,7 +37,7 @@ public class DeliveryEntry {
         } catch (NumberFormatException e) {
             isCorrect = false;
         }
-        if(packages.length>6)
+        if(packages.length>5)
         {
             isCorrect = false;
         }

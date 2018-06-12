@@ -82,7 +82,9 @@ public class Logger2 {
             if(dateInList==false)
             {
                 Date new_date = new Date(data);
+                new_date.paczki+=packages_number;
                 listOfDates.add(new_date);
+
             }
 
             Boolean driverInList = false;

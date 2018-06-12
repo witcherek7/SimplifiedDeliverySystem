@@ -16,5 +16,5 @@ OGQFVHFCXFOL dostarczył 4 paczek.
 HVXXJXKIRUEE dostarczył 3 paczek.
 SFLLGSKUSLJR dostarczył 2 paczek.
 -------------Srednia długość trasy-----------
-Wynosi: 23
-Sredni czas wykonania algorytmu: 67ms.
+Wynosi: 0
+Sredni czas wykonania algorytmu: 1ms.

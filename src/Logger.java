@@ -1,51 +1,44 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Logger {
 
 
-    void createLog(String timestamp, String name, int packagesNumber, int pathTime) throws IOException {
+    void createLog(String timestamp, String name, int packagesNumber, int pathTime) {
         try {
 
 
-            // Getting timestamp date
+            int epochTimestamp = Integer.parseInt(timestamp);
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+            Date time =new Date((long)epochTimestamp*1000);
 
-            LocalDate date = LocalDate.parse(timestamp, formatter);
+            DateFormat df = new SimpleDateFormat("dd-MM-yyyy ");
 
-            String newtimestamp = formatter.format(date);
+            String reportDate = df.format(time);
 
-            // Changing date format
+            //LocalDateTime newtime = LocalDateTime.parse(time);
 
-            char D1letter = newtimestamp.charAt(0);
-            char D2letter = newtimestamp.charAt(1);
-            char M1letter = newtimestamp.charAt(2);
-            char M2letter = newtimestamp.charAt(3);
-            char Y1letter = newtimestamp.charAt(4);
-            char Y2letter = newtimestamp.charAt(5);
-            char Y3letter = newtimestamp.charAt(6);
-            char Y4letter = newtimestamp.charAt(7);
 
-            java.util.Map<String, Integer> nameAndCount = new HashMap<>();
-
+            //out.println(reportDate);
 
             // Writing file
 
             FileWriter writer = new FileWriter("Log.txt", true);
 
-            writer.write(Character.toString(D1letter)+D2letter+"-"+M1letter+M2letter+"-"+Y1letter+Y2letter+Y3letter+Y4letter + ":"
+            writer.write(reportDate + ":"
                     +name+":"+packagesNumber+":"+pathTime);
 
             writer.write("\r\n");
 
             writer.close();
 
-            //System.out.print(D1letter+D2letter+"-"+M1letter+M2letter+"-"+Y1letter+Y2letter+Y3letter+Y4letter + ":"
-            //       +name+":"+packagesNumber+":"+pathTime);
+
 
         } catch (IOException e) {
             java.lang.System.out.print("Wrong Date Format!!");
@@ -55,6 +48,7 @@ public class Logger {
 
 
     }
+
         void CreateLog2(String timestamp, String[] NamesContainer, int howManyLines){
             try {
 

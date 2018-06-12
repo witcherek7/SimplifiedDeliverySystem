@@ -1,4 +1,6 @@
 import java.util.LinkedList;
+
+import static java.lang.System.in;
 import static java.lang.System.out;
 
 public class Algorithms {
@@ -127,8 +129,9 @@ public class Algorithms {
 
     int Floyd_Warshall(int source, int destinations, Nodes.Node[][] graph)
     {
-        int[][] distance  = new int[N][N];
-        int[][] next = new int[N][N];
+        int[][] distance  = new int[N*N][N*N];
+        int[][] next = new int[N*N][N*N];
+
 
         //Wypełnienie tablicy dist[u][v] ← w(u,v)  // the weight of the edge (u,v)
         for(int u=0; u<N; u++)
@@ -157,15 +160,23 @@ public class Algorithms {
         }
         // -------------------------------------
 
+        int x = 0;
+        int y = 0;
+
         for(int i=0; i<Q.size(); i++)
         {
             Nodes.Node node = Q.get(i);
+
+
             for(int j=0; j<node.edges.size(); j++)
             {
-                //distance[node.nodeNumber-1][node.edges.get(j).destination-1] = node.edges.get(j).weight;
-                //next[node.nodeNumber-1][node.edges.get(j).destination-1] = node.edges.get(j).destination-1;
+                if(node.edges.get(j).destination-1<400) {
+                    distance[node.nodeNumber - 1][node.edges.get(j).destination - 1] = node.edges.get(j).weight;
+                    next[node.nodeNumber - 1][node.edges.get(j).destination - 1] = node.edges.get(j).destination - 1;
+
+                }
             }
-            out.println("here4");
+            //out.println("here4");
        }
 
        for(int k = 0; k<N; k++)
@@ -189,16 +200,27 @@ public class Algorithms {
 
       int u = source - 1;
       int v = destinations-1;
-      while(u!=v)
+  /*    while(u!=v)
       {
         u = next[u][v];
         hops++;
-        //out.println("here1");
-      }
+      }*/
 
+    return distance[source-1][destinations-1];
+    //return hops;
+    }
 
-    //return distance[source-1][destinations-1];
-    return hops;
+    int Floyd_Warshall_starter(int[][] destinations, Nodes.Node[][] graph)
+    {
+        int cost = 0;
+        int source = 1;
+
+        for(int i=0; i<destinations.length; i++)
+        {
+            int destinationNodeNumber = graph[destinations[i][0]-1][destinations[i][1]-1].nodeNumber;
+            cost = cost + Floyd_Warshall(source, destinationNodeNumber, graph);
+        }
+        return cost;
     }
 
     int Bellman_Ford(int source, int destination, Nodes.Node[][] graph) {
