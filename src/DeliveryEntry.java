@@ -4,8 +4,8 @@ public class DeliveryEntry {
     int[][] packages;
     int packagesNumber;
 
-    //N jest do testów
 
+    //N - wielkość mapy NxN
     int N = 20;
 
 
@@ -21,7 +21,7 @@ public class DeliveryEntry {
     {
         Boolean isCorrect = true;
 
-        //1. Koordynaty
+        //1. Koordynaty czy pasują do zakresu
         for(int i=0; i<packages.length; i++)
         {
             if(packages[i][0]==0 || packages[i][1]==0 || packages[i][0]>N || packages[i][1]>N)
@@ -31,12 +31,15 @@ public class DeliveryEntry {
 
         }
 
-        //2.Timestamp
+        //2.Timestamp czy jest liczbą
         try {
             Integer.parseInt(timestamp);
         } catch (NumberFormatException e) {
             isCorrect = false;
         }
+
+
+        //3. Czy liczba paczek jest z odpowiedniego zakresu
         if(packages.length>5)
         {
             isCorrect = false;

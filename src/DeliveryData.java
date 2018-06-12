@@ -57,7 +57,7 @@ public class DeliveryData{
             String line;
             line = content;
 
-            // ---------- tutaj zerujemy plik ----------
+            // -------- Sprawdzanie czy pojawiła sie nowa linia w pliku ----------
             if(line.length()==0) {
                 isThereNewLine = false;
             }
@@ -71,6 +71,7 @@ public class DeliveryData{
                 }
 
             }
+            // -------------------------------------------------------------------
 
 
 
@@ -80,17 +81,19 @@ public class DeliveryData{
     }
 
     // Funkcja oddzielająca dane i dodająca do stosu Deliveries
-    // TUTAJ DODA SPRAWDZANIE BŁĘDnych danych
     void separateData(String line)
     {
         int packagesNumber = StringUtils.countMatches(line, "(");
         int[][] packages = new int[packagesNumber][2];
 
+        // Dzielenie danych względem przecinka
         String[] lineParts = line.split(",");
         if(lineParts.length<=12 && lineParts.length>=4) {
         String timestamp = lineParts[0];
         String driverName = lineParts[1];
 
+
+        // partsCounter -- od którego elementu zaczynaja sie paczki
         String numberOnly;
         int partsCounter = 2;
 

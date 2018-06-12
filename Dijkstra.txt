@@ -1,20 +1,16 @@
 ------------Paczki dostarczone danego dnia---------------
-20-05-1970  zostało dostarczone 4 paczek.
-25-11-2017  zostało dostarczone 26 paczek.
+04-12-2017  zostało dostarczone 33 paczek.
 ---------------Suma dostarczonych przesyłek----------------
-Jacob dostarczył 4 paczek.
-EPXBHMZTGKSS dostarczył 2 paczek.
-IPYNTDRSABPJ dostarczył 2 paczek.
-NBKXTAESGHQX dostarczył 3 paczek.
-LPDJAEJFTDNE dostarczył 1 paczek.
-AXVHJFLLNZGQ dostarczył 3 paczek.
-OMAXXAPXUIHU dostarczył 1 paczek.
-FTEEOTDPWSNP dostarczył 1 paczek.
-YQYRZZVBBTBE dostarczył 3 paczek.
-VWRIUXUGUQIH dostarczył 1 paczek.
-OGQFVHFCXFOL dostarczył 4 paczek.
-HVXXJXKIRUEE dostarczył 3 paczek.
-SFLLGSKUSLJR dostarczył 2 paczek.
+XNUPP dostarczył 4 paczek.
+RYVQB dostarczył 5 paczek.
+FPVNJ dostarczył 2 paczek.
+GHSGJ dostarczył 3 paczek.
+CFJNU dostarczył 1 paczek.
+CIWOU dostarczył 1 paczek.
+HFCQS dostarczył 8 paczek.
+WVZMB dostarczył 2 paczek.
+FSHPZ dostarczył 3 paczek.
+IVLOL dostarczył 4 paczek.
 -------------Srednia długość trasy-----------
-Wynosi: 16
-Sredni czas wykonania algorytmu: 66ms.
+Wynosi: 27
+Sredni czas wykonania algorytmu: 102ms.

@@ -53,6 +53,7 @@ public class Nodes {
 
     }
 
+    //Tworzenie macierzy Node'ów
     void createNodes()
     {
         int number = 1;
@@ -67,6 +68,8 @@ public class Nodes {
         }
     }
 
+
+    // Dodawanie odpowiednich krawędzi do grafu (tablicy)
     void createGraph(String[] allLines)
     {
         int whichhor = 0;
@@ -79,14 +82,17 @@ public class Nodes {
                 {
                     int value = Character.getNumericValue(allLines[i].charAt(j));
                     //System.out.println("Value: " + value);
-                    if(value != 0 ) {
-                        int destination = N * whichhor + j + 2;
-                        int source = N*whichhor+j + 1;
-                        nodes[whichhor][j].addEdge(destination,value);
-                        if(j!=N-1) {
-                            nodes[whichhor][j + 1].addEdge(source, value);
-                        }
+                    if(j!=N-1) {
+                        if (value != 0) {
+                            int destination = N * whichhor + j + 2;
+                            int source = N * whichhor + j + 1;
+                            nodes[whichhor][j].addEdge(destination, value);
+                            if (j != N - 1) {
+                                nodes[whichhor][j + 1].addEdge(source, value);
+                            }
 
+
+                        }
                     }
 
 

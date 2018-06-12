@@ -2,3 +2,6 @@
 2. Logger2 przetestować
 3. Musimy jeszcze na koniec wygenerować plik tekstowy porównujący algorytmy.
 4. Raporty.
+
+
+// DONE!

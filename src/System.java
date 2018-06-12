@@ -20,7 +20,7 @@ public class System {
         DeliveryData fileloader = new DeliveryData(deliveryDataPath);
         Map map = new Map(mapPath);
         Algorithms algorithms = new Algorithms();
-        Generator generator = new Generator();
+       // Generator generator = new Generator();
         Logger logger = new Logger();
         Logger2 logger_Dijkstra = new Logger2(logPath, Dijkstra);
         Logger2 logger_Ford = new Logger2(logPath, Bellman);
@@ -29,7 +29,7 @@ public class System {
         // --------- Wywołanie metod -----------
         map.read();
         Nodes nodes = new Nodes(map.lines);
-        generator.creator();
+       // generator.creator();
 
         // ----- Dla średniej długosci trasy --- Dijsktra ----
         int medium_cost = 0;
@@ -44,6 +44,9 @@ public class System {
         long time_Bellman = 0;
         long time_Floyd = 0;
 
+        String timestamp_error = "";
+        String name_error = "";
+
         long timestamp_reference = 0;
         // ---------------------- Operation core -----------------------
         while(true)
@@ -57,6 +60,8 @@ public class System {
 
 
                     DeliveryEntry entry = fileloader.deliveries.pollFirst();
+                    timestamp_error = entry.timestamp;
+                    name_error = entry.name;
 
                     //Sprawdzanie czy timestamp wzrósł
                     if(Long.parseLong(entry.timestamp)>timestamp_reference) {
@@ -70,7 +75,7 @@ public class System {
                         int cost2 = algorithms.Bellman_Ford_starter(entry.packages, nodes.nodes);
                         time_Bellman = time_Bellman + java.lang.System.currentTimeMillis() - time;
                         time = java.lang.System.currentTimeMillis();
-                        int cost3 = algorithms.Floyd_Warshall_starter(entry.packages, nodes.nodes);
+                        int cost3 = 0; //= algorithms.Floyd_Warshall_starter(entry.packages, nodes.nodes);
                         time_Floyd = time_Floyd + java.lang.System.currentTimeMillis() - time;
 
 
@@ -100,7 +105,7 @@ public class System {
                     }
                     else
                     {
-                        //out.println("Nieprawidłowy timestamp: " + entry.timestamp + ", poprzedni: " + timestamp_reference);
+                        out.println("Nieprawidłowy timestamp: " + entry.timestamp + ", poprzedni: " + timestamp_reference);
                     }
 
                 }
@@ -124,9 +129,15 @@ public class System {
 
                 Thread.sleep(1000);
             }
+
+            catch(ArithmeticException e)
+            {
+                //Zainicjalizowany program bez przetworzonych danych dzieli przez 0, to jest unikanie
+                //zasyfiania logów
+            }
             catch (Exception e)
             {
-                out.println(e);
+                out.println("Error in: " + timestamp_error + " " + name_error);
             }
         }
 

@@ -8,6 +8,12 @@ public class Algorithms {
     // Number of Nodes in Graph
     int N = 20;
 
+
+    // Metody Algorytm liczą koszt/długość dla pojedynczej pary kooordynatów
+    // Source - Destination
+
+    // Metody _starter uruchamiają w pętli metody Algorytm dla tablich koordynatów[][]
+
     int Dijkstra(int source, int destination, Nodes.Node[][] graph)
     {
         int distance[] = new int[N*N];

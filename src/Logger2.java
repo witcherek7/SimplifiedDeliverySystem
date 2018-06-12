@@ -42,7 +42,7 @@ public class Logger2 {
     }
 
 
-    // Funkcja wczytuje wszystkie linie do tablicy lines[]
+    // Funkcja wczytuje wszystkie linie do tablicy lines[] z pliku Log.txt
     void readFile() {
         try {
             String content = new String(Files.readAllBytes(Paths.get(path)));
@@ -53,22 +53,26 @@ public class Logger2 {
 
 
         } catch (IOException e) {
-            java.lang.System.out.print(e);
+            //java.lang.System.out.print(e);
         }
 
     }
 
+    // Separuje wczytane dane i zapisuje raport do pliku
     void setSeparatedDataAndSave(int medium_cost, long time)
     {
         LinkedList<Driver> listOfDrivers = new LinkedList<Driver>();
         LinkedList<Date> listOfDates = new LinkedList<Date>();
 
+
+        //Dla każdeej linii podziel ze wzgledu na ":"
         for(int i=0; i<lines.length; i++) {
             separatedData = lines[i].split(":");
             String data = separatedData[0];
             int packages_number = Integer.parseInt(separatedData[2]);
 
-
+            //Sprawdzanie czy data już jest w liście, jeżeli nie utwórz nowa,
+            //jeżeli tak to dodaj paczki do daty
             Boolean dateInList = false;
             for(int j=0; j<listOfDates.size(); j++)
             {
@@ -87,6 +91,8 @@ public class Logger2 {
 
             }
 
+            //Sprawdzanie czy dany kierowca już jest w liście, jeżeli nie utwórz nowa,
+            //jeżeli tak to dodaj paczki do kierowcy
             Boolean driverInList = false;
             String name = separatedData[1];
 
@@ -106,6 +112,7 @@ public class Logger2 {
                 listOfDrivers.add(new_Driver);
             }
 
+            // Zapisanie raportu do pliku
             try {
                 PrintWriter writer = new PrintWriter(save_path);
 
