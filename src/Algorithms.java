@@ -123,6 +123,7 @@ public class Algorithms {
         {
             int destinationNodeNumber = graph[destinations[i][0]-1][destinations[i][1]-1].nodeNumber;
             cost = cost + Dijkstra(source, destinationNodeNumber, graph);
+            source = destinationNodeNumber;
         }
         return cost;
     }
@@ -170,7 +171,7 @@ public class Algorithms {
 
             for(int j=0; j<node.edges.size(); j++)
             {
-                if(node.edges.get(j).destination-1<400) {
+                if(node.edges.get(j).destination-1<N*N) {
                     distance[node.nodeNumber - 1][node.edges.get(j).destination - 1] = node.edges.get(j).weight;
                     next[node.nodeNumber - 1][node.edges.get(j).destination - 1] = node.edges.get(j).destination - 1;
 
@@ -219,6 +220,7 @@ public class Algorithms {
         {
             int destinationNodeNumber = graph[destinations[i][0]-1][destinations[i][1]-1].nodeNumber;
             cost = cost + Floyd_Warshall(source, destinationNodeNumber, graph);
+            source = destinationNodeNumber;
         }
         return cost;
     }
@@ -299,6 +301,7 @@ public class Algorithms {
         {
             int destinationNodeNumber = graph[destinations[i][0]-1][destinations[i][1]-1].nodeNumber;
             cost = cost + Bellman_Ford(source, destinationNodeNumber, graph);
+            source = destinationNodeNumber;
         }
         return cost;
     }

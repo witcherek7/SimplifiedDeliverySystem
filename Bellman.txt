@@ -2,7 +2,7 @@
 20-05-1970  zostało dostarczone 4 paczek.
 25-11-2017  zostało dostarczone 26 paczek.
 ---------------Suma dostarczonych przesyłek----------------
-Charlie dostarczył 4 paczek.
+Jacob dostarczył 4 paczek.
 EPXBHMZTGKSS dostarczył 2 paczek.
 IPYNTDRSABPJ dostarczył 2 paczek.
 NBKXTAESGHQX dostarczył 3 paczek.
@@ -16,5 +16,5 @@ OGQFVHFCXFOL dostarczył 4 paczek.
 HVXXJXKIRUEE dostarczył 3 paczek.
 SFLLGSKUSLJR dostarczył 2 paczek.
 -------------Srednia długość trasy-----------
-Wynosi: 23
+Wynosi: 16
 Sredni czas wykonania algorytmu: 0ms.
